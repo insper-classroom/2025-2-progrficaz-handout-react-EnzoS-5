@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Note from "./components/Note";
+import AppBar from "./components/AppBar";
 import "./App.css";
 
 function App() {
@@ -12,15 +13,18 @@ function App() {
       .then((res) => setNotes(res.data));
   }, []);
 
-  console.log(notes);
-
   return (
     <>
-      {notes.map((note) => (
-        <Note key={`note__${note.id}`} title={note.title}>
-          {note.content}
-        </Note>
-      ))}
+      <AppBar />
+      <main className="container">
+        <div className="card-container">
+          {notes.map((note) => (
+            <Note key={`note__${note.id}`} title={note.title}>
+              {note.content}
+            </Note>
+          ))}
+        </div>
+      </main>
     </>
   );
 }
