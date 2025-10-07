@@ -1,20 +1,18 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Note from "./components/Note";
 import "./App.css";
 
 function App() {
-  const notes = [
-    {
-      id: 1,
-      title: "Receita de miojo",
-      content:
-        "Bata com um martelo antes de abrir o pacote. Misture o tempero, coloque em uma vasilha e aproveite seu snack :)",
-    },
-    {
-      id: 2,
-      title: "Sorvete de banana",
-      content: "Coloque a banana no congelador e espere.",
-    },
-  ];
+  const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/notes/")
+      .then((res) => setNotes(res.data));
+  }, []);
+
+  console.log(notes);
 
   return (
     <>
