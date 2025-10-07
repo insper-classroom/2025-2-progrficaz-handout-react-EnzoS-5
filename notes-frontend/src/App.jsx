@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import Note from "./components/Note";
 import AppBar from "./components/AppBar";
 import Formulario from "./components/Formulario";
+import Editar from "./components/Editar";
 import "./App.css";
 
 function App() {
   const [notes, setNotes] = useState([]);
+  const [editingNote, setEditingNote] = useState(null);
 
   const carregaNotas = () => {
     console.log("Carregando notas...");
@@ -21,12 +23,26 @@ function App() {
       });
   };
 
+  const iniciarEdicao = (note) => {
+    setEditingNote(note);
+  };
+
+  const cancelarEdicao = () => {
+    setEditingNote(null);
+  };
+
   useEffect(() => {
     carregaNotas();
   }, []);
 
   console.log("Estado atual das notas:", notes);
 
+  // Se estiver editando uma nota, mostrar o componente de edição
+  if (editingNote) {
+    return <Editar note={editingNote} onCancel={cancelarEdicao} loadNotes={carregaNotas} />;
+  }
+
+  // Caso contrário, mostrar a página principal
   return (
     <>
       <AppBar />
@@ -34,7 +50,13 @@ function App() {
         <Formulario loadNotes={carregaNotas} />
         <div className="card-container">
           {notes.map((note) => (
-            <Note key={`note__${note.id}`} id={note.id} title={note.title} loadNotes={carregaNotas}>
+            <Note 
+              key={`note__${note.id}`} 
+              id={note.id} 
+              title={note.title} 
+              loadNotes={carregaNotas}
+              onEdit={() => iniciarEdicao(note)}
+            >
               {note.content}
             </Note>
           ))}

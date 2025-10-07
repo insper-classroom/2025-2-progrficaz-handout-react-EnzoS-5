@@ -1,6 +1,5 @@
 .card{
     width: 13%;
-    /* height: 110px; */
     padding: 10px;
     margin-bottom: 30px;
     border-radius: 5px;
@@ -26,6 +25,21 @@
     height: 100%;
     padding-top: 10px;
     flex-grow: 1;
+}
+
+.btn-edit {
+    margin-top: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background-color: #45a049;
 }
 
 .btn-delete {
