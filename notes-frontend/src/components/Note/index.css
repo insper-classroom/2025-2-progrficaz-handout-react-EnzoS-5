@@ -25,4 +25,20 @@
     align-items: center;
     height: 100%;
     padding-top: 10px;
+    flex-grow: 1;
+}
+
+.btn-delete {
+    margin-top: 10px;
+    background-color: #ff4757;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: #ff3838;
 }
