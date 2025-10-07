@@ -9,14 +9,23 @@ function App() {
   const [notes, setNotes] = useState([]);
 
   const carregaNotas = () => {
+    console.log("Carregando notas...");
     axios
       .get("http://localhost:8000/api/notes/")
-      .then((res) => setNotes(res.data));
+      .then((res) => {
+        console.log("Notas recebidas:", res.data);
+        setNotes(res.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao carregar notas:", error);
+      });
   };
 
   useEffect(() => {
     carregaNotas();
   }, []);
+
+  console.log("Estado atual das notas:", notes);
 
   return (
     <>
